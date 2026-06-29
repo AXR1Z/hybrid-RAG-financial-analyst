@@ -1,8 +1,12 @@
 """Main ingestion pipeline orchestration."""
 
+import sys
 import logging
 from pathlib import Path
 from typing import List
+
+# Add project root to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.config import (
     DATA_DIR, DOCS_DIR, CHROMA_DB_DIR, BM25_INDEX_PATH, BM25_REGISTRY_PATH,

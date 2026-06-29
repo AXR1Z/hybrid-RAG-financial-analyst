@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 """Evaluation script for the hybrid RAG system."""
 
+import sys
 import argparse
 import logging
 import json
 from pathlib import Path
+
+# Add project root to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.agents.orchestrator import get_orchestrator
 from src.evaluation.evaluator import evaluate_on_qna_dataset
