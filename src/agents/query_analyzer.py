@@ -41,13 +41,14 @@ class QueryAnalyzer:
 Return a JSON object with these exact keys."""
         
         try:
-            response = self.client.messages.create(
+            response = self.client.chat.completions.create(
                 model=self.model,
                 max_tokens=256,
+                system=system_prompt,
                 messages=[
                     {
                         "role": "user",
-                        "content": f"{system_prompt}\n\nQuery: {query}",
+                        "content": f"Query: {query}",
                     }
                 ],
             )

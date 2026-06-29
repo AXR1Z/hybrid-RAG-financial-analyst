@@ -15,7 +15,7 @@ from src.agents.answer_agent import answer_agent_node
 logger = logging.getLogger(__name__)
 
 
-def should_search_web(state: RAGState) -> Literal["web_search", "context_assembly"]:
+def should_search_web(state: RAGState) -> Literal["web_search", "context_assembler"]:
     """
     Conditional edge: determine if web search is needed.
     
@@ -23,14 +23,14 @@ def should_search_web(state: RAGState) -> Literal["web_search", "context_assembl
         state: Current RAG state
         
     Returns:
-        Next node: "web_search" or "context_assembly"
+        Next node: "web_search" or "context_assembler"
     """
     if state.get("needs_web_search", False):
         logger.info("Web search needed, routing to web_search node")
         return "web_search"
     else:
-        logger.info("Web search not needed, routing to context_assembly")
-        return "context_assembly"
+        logger.info("Web search not needed, routing to context_assembler")
+        return "context_assembler"
 
 
 class RAGOrchestrator:
@@ -59,15 +59,15 @@ class RAGOrchestrator:
             should_search_web,
             {
                 "web_search": "web_search",
-                "context_assembly": "context_assembly",
+                "context_assembler": "context_assembler",
             },
         )
         
-        # Web search -> context assembly
-        self.workflow.add_edge("web_search", "context_assembly")
+        # Web search -> context assembler
+        self.workflow.add_edge("web_search", "context_assembler")
         
-        # Context assembly -> answer
-        self.workflow.add_edge("context_assembly", "answer_agent")
+        # Context assembler -> answer
+        self.workflow.add_edge("context_assembler", "answer_agent")
         
         # Answer -> END
         self.workflow.add_edge("answer_agent", END)

@@ -1,0 +1,55 @@
+[project]
+name = "hybrid-rag-financial-analyst"
+version = "1.0.0"
+description = "Hybrid RAG system for SEC 10-Q financial analysis using LangGraph and Groq"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Your Name", email = "your.email@example.com"}]
+license = {text = "MIT"}
+
+dependencies = [
+    # Core dependencies
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.0.0",
+    
+    # LLM & Agents
+    "groq>=0.4.0",
+    "langchain>=0.1.0",
+    "langchain-core>=0.1.0",
+    "langgraph>=0.0.50",
+    "langchain-community>=0.0.10",
+    
+    # Vector DB & Embeddings
+    "chromadb>=0.4.0",
+    "sentence-transformers>=2.0.0",
+    "numpy>=1.24.0",
+    "torch>=2.0.0",
+    
+    # Retrieval & Ranking
+    "rank-bm25>=0.2.2",
+    
+    # PDF Processing
+    "PyMuPDF>=1.24.0",
+    
+    # Web Search
+    "duckduckgo-search>=3.8.0",
+    
+    # Evaluation
+    "ragas>=0.0.15",
+    "scikit-learn>=1.4.0",
+    
+    # Utilities
+    "requests>=2.31.0",
+    "pandas>=2.0.0",
+    "tqdm>=4.66.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==7.4.4",
+    "black==24.1.1",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"

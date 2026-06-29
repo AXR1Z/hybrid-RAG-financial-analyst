@@ -53,7 +53,7 @@ Context:
 Please provide a comprehensive answer based on the above context."""
         
         try:
-            response = self.client.messages.create(
+            response = self.client.chat.completions.create(
                 model=self.model,
                 temperature=self.temperature,
                 max_tokens=self.max_tokens,
@@ -66,7 +66,7 @@ Please provide a comprehensive answer based on the above context."""
                 ],
             )
             
-            answer = response.content[0].text
+            answer = response.choices[0].message.content
             logger.info("✓ Answer generated")
             return answer
         

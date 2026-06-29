@@ -31,12 +31,16 @@ class ContextAssembler:
         Assemble context from retrieved results.
         
         Args:
-            rag_results: RAG retrieval results
-            web_results: Web search results
+            rag_results: RAG retrieval results (can be None or empty list)
+            web_results: Web search results (can be None or empty list)
             
         Returns:
             Tuple of (context_string, sources_list)
         """
+        # Handle None values
+        rag_results = rag_results or []
+        web_results = web_results or []
+        
         context_parts = []
         sources = []
         
@@ -91,7 +95,7 @@ class ContextAssembler:
         
         context = "\n".join(context_parts)
         
-        logger.info(f"Assembled context from {len(rag_results)} RAG chunks + {len(web_results)} web results")
+        logger.info(f"Assembled context from {len(rag_results or [])} RAG chunks + {len(web_results or [])} web results")
         
         return context, sources
 
