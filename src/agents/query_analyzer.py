@@ -44,8 +44,11 @@ Return a JSON object with these exact keys."""
             response = self.client.chat.completions.create(
                 model=self.model,
                 max_tokens=256,
-                system=system_prompt,
                 messages=[
+                    {
+                        "role": "system",
+                        "content": system_prompt,
+                    },
                     {
                         "role": "user",
                         "content": f"Query: {query}",

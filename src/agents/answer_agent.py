@@ -57,8 +57,11 @@ Please provide a comprehensive answer based on the above context."""
                 model=self.model,
                 temperature=self.temperature,
                 max_tokens=self.max_tokens,
-                system=system_prompt,
                 messages=[
+                    {
+                        "role": "system",
+                        "content": system_prompt,
+                    },
                     {
                         "role": "user",
                         "content": user_message,
